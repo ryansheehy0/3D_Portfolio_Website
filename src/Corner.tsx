@@ -1,64 +1,55 @@
-import React, { useEffect } from 'react'
-import { ExtrudeGeometry, Shape } from 'three'
+import React, { useState } from 'react'
 import { useThree } from '@react-three/fiber'
+import { Text } from "@react-three/drei"
 
 type CornerProps = {
 	corner: "topLeft" | "topRight" | "bottomRight" | "bottomLeft"
 }
 
 const Corner: React.FC<CornerProps> = ({corner}) => {
-	let position: [number, number, number]
-	const scale = 1
+	const scale = 2.5
 	const { width, height } = useThree(state => state.viewport)
+	const [depth, setDepth] = useState(0.001)
 
-	useEffect(() => {
-		console.log(width, height)
-
-	}, [width])
-
-	const shape = new Shape()
+	let position: [number, number, number]
 	switch(corner){
 		case "topLeft":
-			shape.moveTo(0, 0)
-			shape.lineTo(0, -scale)
-			shape.lineTo(scale, 0)
-			shape.lineTo(0, 0)
-			position = [-1.8, 3.8, 0]
+			position = [-width/2, height/2, 0]
 			break
 		case "topRight":
-			shape.moveTo(scale, 0)
-			shape.lineTo(scale, -scale)
-			shape.lineTo(0, 0)
-			shape.lineTo(scale, 0)
-			position = [3.5, 3.7, 0]
+			position = [width/2, height/2, 0]
 			break
 		case "bottomRight":
-			shape.moveTo(scale, -scale)
-			shape.lineTo(scale, 0)
-			shape.lineTo(0, -scale)
-			shape.lineTo(scale, -scale)
-			position = [3.5, -2.5, 0]
+			position = [width/2, -height/2, 0]
 			break
 		case "bottomLeft":
-			shape.moveTo(0, -scale)
-			shape.lineTo(0, 0)
-			shape.lineTo(scale, -scale)
-			shape.lineTo(0, -scale)
-			position = [-4.5, -2.5, 0]
+			position = [-width/2, -height/2, 0]
 			break
 	}
 
-	const extrudeSettings = {
-		depth: .0001,
-		bevelEnable: false
-	}
-	const cornerGeometry = new ExtrudeGeometry(shape, extrudeSettings)
-
 	return (
-		<mesh position={position}>
-			<primitive object={cornerGeometry} />
-			<meshStandardMaterial color={"white"} />
-		</mesh>
+		<>
+			<mesh
+				position={position}
+				rotation={[0, 0, 45 * (Math.PI/180)]}
+				onClick={() => {
+					setDepth(1.125)
+				}}
+				onPointerOver={() => document.body.style.cursor = "pointer"}
+				onPointerOut={() => document.body.style.cursor = "auto"}
+			>
+				<boxGeometry args={[scale, scale, depth]}/>
+				<meshStandardMaterial color={"white"} />
+			</mesh>
+			<Text
+				position={[-width/2 + 0.8, height/2 - 0.8, 0.1]}
+				rotation={[0, 0, 45 * (Math.PI/180)]}
+				scale={0.3}
+				color={"black"}
+			>
+				About Me
+			</Text>
+		</>
 	)
 }
 
