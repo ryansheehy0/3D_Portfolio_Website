@@ -4,10 +4,13 @@ import { CubicBezierCurve3, Vector3 } from 'three'
 import { Text } from "@react-three/drei"
 
 type CornerProps = {
-	corner: "topLeft" | "topRight" | "bottomRight" | "bottomLeft"
+	corner: "topLeft" | "topRight" | "bottomRight" | "bottomLeft",
+	setCornerClicked: React.Dispatch<React.SetStateAction<"topLeft" | "topRight" | "bottomRight" | "bottomLeft" | "none">>,
+	animationDirection: "none" | "forward" | "backward",
+	setAnimationDirection: React.Dispatch<React.SetStateAction<"none" | "forward" | "backward">>
 }
 
-const Corner: React.FC<CornerProps> = ({corner}) => {
+const Corner: React.FC<CornerProps> = ({corner, setCornerClicked, animationDirection, setAnimationDirection}) => {
 	const { width, height } = useThree(state => state.viewport)
 	const scale = 2.5
 	const maxDepth = -(width/height) * scale
@@ -60,7 +63,6 @@ const Corner: React.FC<CornerProps> = ({corner}) => {
 
 	const numberOfFrames = 75
 	let t = 0
-	const maxTime = 1
 	useFrame((state) => {
 		if(!clicked) return null
     const position = cameraCurve.getPoint(t)
@@ -68,7 +70,10 @@ const Corner: React.FC<CornerProps> = ({corner}) => {
 		state.camera.lookAt(slightlyAheadPosition)
 		state.camera.position.lerp(position, .3)
 		t+=1/numberOfFrames
-		if(t>= maxTime) t=maxTime
+		if(t >= 1){
+			t=1
+			setCornerClicked(corner)
+		}
 	})
 
 	return (
