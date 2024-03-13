@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useThree, useFrame } from '@react-three/fiber'
 import { CubicBezierCurve3, Vector3 } from 'three'
-import { Text, Wireframe } from "@react-three/drei"
+import { Text } from "@react-three/drei"
 
 type CornerProps = {
 	corner: "topLeft" | "topRight" | "bottomRight" | "bottomLeft"
@@ -14,7 +14,6 @@ const Corner: React.FC<CornerProps> = ({corner}) => {
 	const xYDistanceToCenterOfCorner = (scale/2)/(Math.cos(45 * (Math.PI/180)))
 	const [depth, setDepth] = useState(0.001)
 	const [clicked, setClicked] = useState(false)
-
 
 	let position: [number, number, number]
 	let textPosition: [number, number, number]

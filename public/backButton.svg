@@ -1,0 +1,5 @@
+<svg width="50" height="20" viewBox="0 0 50 20" fill="none" xmlns="http://www.w3.org/2000/svg" >
+  <path d="M10 2L2 10L10 18" stroke="white" strokeWidth="2" stroke-linecap="round"/>
+  <path d="M10 18H43" stroke="white" strokeWidth="2" stroke-linecap="round"/>
+  <text x="10" y="15" fontSize="12" style="font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;" fill="white">Back</text>
+</svg>
