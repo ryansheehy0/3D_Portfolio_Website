@@ -17,9 +17,9 @@ function App() {
         minPolarAngle={0}
         maxPolarAngle={Math.PI / 1.75}
       />
-      */}
-        <ambientLight intensity={1} />
-        <directionalLight position={[0,0,10]} color="white" intensity={1}/>
+  */}
+        <ambientLight intensity={1.53} />
+        {/*<directionalLight position={[0,0,10]} color="white" intensity={1}/>*/}
         <Corner corner="topLeft" />
         <Corner corner="topRight" />
         <Corner corner="bottomRight" />
@@ -27,8 +27,6 @@ function App() {
         <Text position={[0, 0, 0]}>
           Ryan Sheehy
         </Text>
-        <Square />
-        <Line />
       </Canvas>
     </div>
   )

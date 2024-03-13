@@ -5,7 +5,6 @@ const Square: React.FC = () => {
 	const { width, height } = useThree(state => state.viewport)
 	const scale = 2.5
 	const maxDepth = -(width/height) * scale
-	// [(-width/2) + (scale/4), (height/2) + (-scale/4), maxDepth/2]
 	const xYDistanceToCenterOfCorner = (scale/2)/(Math.cos(45 * (Math.PI/180)))
 
 	return (

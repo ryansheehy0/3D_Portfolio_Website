@@ -8,12 +8,13 @@ const Line: React.FC = () => {
 	const maxDepth = -(width/height) * scale
 	const xYDistanceToCenterOfCorner = (scale/2)/(Math.cos(45 * (Math.PI/180)))
 
+
 	return (
 		<CubicBezierLine
 			start={[0,0,5]}
 			end={[(-width/2) + (xYDistanceToCenterOfCorner/2), (height/2) + (-xYDistanceToCenterOfCorner/2), maxDepth/2]}
-			midA={[0, 0, 0]}
-			midB={[0, 0, 0]}
+			midA={[-.2, -.2, -1]}
+			midB={[-0.5, -0.5, maxDepth/2 - 1.3]}
 			color="green"
 			lineWidth={10}
 			dashed={false}
