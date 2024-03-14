@@ -5,15 +5,36 @@ type PageProps = {
 	pageTitle: string,
   style?: React.CSSProperties,
   children?: React.ReactNode,
-	setCornerClicked: React.Dispatch<React.SetStateAction<"topLeft" | "topRight" | "bottomRight" | "bottomLeft" | "none">>
+  cornerClicked: "topLeft" | "topRight" | "bottomRight" | "bottomLeft" | "none",
+	setCornerClicked: React.Dispatch<React.SetStateAction<"topLeft" | "topRight" | "bottomRight" | "bottomLeft" | "none">>,
+  setAnimateTopLeft: React.Dispatch<React.SetStateAction<"none" | "forward" | "backward">>,
+  setAnimateTopRight: React.Dispatch<React.SetStateAction<"none" | "forward" | "backward">>,
+  setAnimateBottomRight: React.Dispatch<React.SetStateAction<"none" | "forward" | "backward">>,
+  setAnimateBottomLeft: React.Dispatch<React.SetStateAction<"none" | "forward" | "backward">>
 }
 
-const Page: React.FC<PageProps> = ({pageTitle, style, children, setCornerClicked}) => {
+const Page: React.FC<PageProps> = ({pageTitle, style, children, cornerClicked, setCornerClicked, setAnimateTopLeft, setAnimateTopRight, setAnimateBottomRight, setAnimateBottomLeft}) => {
   return (
 		<div className={twMerge("w-screen h-screen bg-white flex flex-col items-center text-black transition-opacity")} style={style}>
 
       {/* Back button */}
-      <button className="bg-black border-none focus:outline-none absolute top-0 left-0 rounded-none rounded-br-3xl text-white w-36 h-16" onClick={() => {console.log("test"); setCornerClicked("none")}}>
+      <button className="bg-black border-none focus:outline-none absolute top-0 left-0 rounded-none rounded-br-3xl text-white w-36 h-16" onClick={() => {
+        switch(cornerClicked){
+          case "topLeft":
+            setAnimateTopLeft("backward")
+            break
+          case "topRight":
+            setAnimateTopRight("backward")
+            break
+          case "bottomRight":
+            setAnimateBottomRight("backward")
+            break
+          case "bottomLeft":
+            setAnimateBottomLeft("backward")
+            break
+        }
+        setCornerClicked("none")
+        }}>
         <img className="w-full h-full" src="/backButton.svg" />
       </button>
 

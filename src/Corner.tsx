@@ -16,7 +16,6 @@ const Corner: React.FC<CornerProps> = ({corner, setCornerClicked, animationDirec
 	const maxDepth = -(width/height) * scale
 	const xYDistanceToCenterOfCorner = (scale/2)/(Math.cos(45 * (Math.PI/180)))
 	const [depth, setDepth] = useState(0.001)
-	const [clicked, setClicked] = useState(false)
 
 	let position: [number, number, number]
 	let textPosition: [number, number, number]
@@ -62,18 +61,39 @@ const Corner: React.FC<CornerProps> = ({corner, setCornerClicked, animationDirec
 	)
 
 	const numberOfFrames = 75
-	let t = 0
+	const oneFrame = 1 / numberOfFrames
+	//let t = 0
+	const [t, setT] = useState(0)
 	useFrame((state) => {
-		if(!clicked) return null
+		switch(animationDirection){
+			case "none": return null
+			case "forward":
+				//t += oneFrame
+				setT((t) => t + oneFrame)
+				if(t >= 1 + oneFrame){
+					//t = 1
+					setT(1)
+					setCornerClicked(corner)
+					setAnimationDirection("none")
+				}
+				break
+			case "backward":
+				//t -= oneFrame
+				setT((t) => t - oneFrame)
+				if(t <= 0 - oneFrame){
+					//t = 0
+					setT(0)
+					setCornerClicked("none")
+					setAnimationDirection("none")
+					setDepth(0.001)
+				}
+				console.log(t)
+				break
+		}
     const position = cameraCurve.getPoint(t)
 		const slightlyAheadPosition = cameraCurve.getPoint(t + .1)
 		state.camera.lookAt(slightlyAheadPosition)
 		state.camera.position.lerp(position, .3)
-		t+=1/numberOfFrames
-		if(t >= 1){
-			t=1
-			setCornerClicked(corner)
-		}
 	})
 
 	return (
@@ -81,7 +101,7 @@ const Corner: React.FC<CornerProps> = ({corner, setCornerClicked, animationDirec
 			<mesh
 				position={[position[0], position[1], depth/2]}
 				rotation={[0, 0, 45 * (Math.PI/180)]}
-				onClick={() => {setDepth(maxDepth); setClicked(true);}}
+				onClick={() => {setDepth(maxDepth); setAnimationDirection("forward")}}
 				onPointerOver={() => document.body.style.cursor = "pointer"}
 				onPointerOut={() => document.body.style.cursor = "auto"}
 			>
