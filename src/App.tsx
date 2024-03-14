@@ -3,6 +3,7 @@ import Corner from "./Corner"
 import { Text } from "@react-three/drei"
 import Page from "./pages/Page"
 import { useState } from "react"
+import AboutMe from "./pages/AboutMe"
 
 function App() {
   const [cornerClicked, setCornerClicked] = useState<"none" | "topLeft" | "topRight" | "bottomRight" | "bottomLeft">("none")
@@ -15,7 +16,7 @@ function App() {
 
   return (<>
     <Page
-      pageTitle={"Test"}
+      pageTitle={"About Me"}
       style={{opacity: cornerClicked === "none" ? 0.7647 : 1}}
       cornerClicked={cornerClicked}
       setCornerClicked={setCornerClicked}
@@ -23,7 +24,9 @@ function App() {
       setAnimateTopRight={setAnimateTopRight}
       setAnimateBottomRight={setAnimateBottomRight}
       setAnimateBottomLeft={setAnimateBottomLeft}
-    />
+    >
+      <AboutMe />
+    </Page>
     <div className="w-screen h-screen absolute top-0 left-0" style={{display: cornerClicked === "none" ? "initial" : "none"}}>
       <Canvas className="bg-black" camera={{fov: 90, near: 0.1, far: 1000, position: [0, 0, 5]}}>
         <ambientLight intensity={1.53} />

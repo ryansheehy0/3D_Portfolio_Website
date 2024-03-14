@@ -15,7 +15,7 @@ type PageProps = {
 
 const Page: React.FC<PageProps> = ({pageTitle, style, children, cornerClicked, setCornerClicked, setAnimateTopLeft, setAnimateTopRight, setAnimateBottomRight, setAnimateBottomLeft}) => {
   return (
-		<div className={twMerge("w-screen h-screen bg-white flex flex-col items-center text-black transition-opacity")} style={style}>
+		<div className={twMerge("w-screen h-screen bg-white flex flex-col items-center text-black transition-opacity ease-in-out")} style={style}>
 
       {/* Back button */}
       <button className="bg-black border-none focus:outline-none absolute top-0 left-0 rounded-none rounded-br-3xl text-white w-36 h-16" onClick={() => {
