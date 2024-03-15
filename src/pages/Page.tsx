@@ -1,5 +1,4 @@
 import React from "react"
-import { twMerge } from "tailwind-merge"
 
 type PageProps = {
 	pageTitle: string,
@@ -15,37 +14,38 @@ type PageProps = {
 
 const Page: React.FC<PageProps> = ({pageTitle, style, children, cornerClicked, setCornerClicked, setAnimateTopLeft, setAnimateTopRight, setAnimateBottomRight, setAnimateBottomLeft}) => {
   return (
-		<div className={twMerge("w-screen h-screen bg-white flex flex-col items-center text-black transition-opacity ease-in-out")} style={style}>
+		<div className="w-screen h-fit bg-white relative text-black transition-opacity ease-in-out" style={style}>
 
       {/* Back button */}
-      <button className="bg-black border-none focus:outline-none absolute top-0 left-0 rounded-none rounded-br-3xl text-white w-36 h-16" onClick={() => {
-        switch(cornerClicked){
-          case "topLeft":
-            setAnimateTopLeft("backward")
-            break
-          case "topRight":
-            setAnimateTopRight("backward")
-            break
-          case "bottomRight":
-            setAnimateBottomRight("backward")
-            break
-          case "bottomLeft":
-            setAnimateBottomLeft("backward")
-            break
-        }
-        setCornerClicked("none")
+      <button className="bg-black border-none focus:outline-none absolute top-0 left-0 rounded-none rounded-br-3xl text-white w-36 h-16"
+        onClick={() => {
+          switch(cornerClicked){
+            case "topLeft":
+              setAnimateTopLeft("backward")
+              break
+            case "topRight":
+              setAnimateTopRight("backward")
+              break
+            case "bottomRight":
+              setAnimateBottomRight("backward")
+              break
+            case "bottomLeft":
+              setAnimateBottomLeft("backward")
+              break
+          }
+          setCornerClicked("none")
         }}>
         <img className="w-full h-full" src="/backButton.svg" />
       </button>
 
       {/* Title and page */}
-      <div className="h-fit min-h-[calc(100vh-178px)] flex flex-col items-center">
-        <h1 className="pt-16 pb-16 text-6xl">{pageTitle}</h1>
+      <div className="h-fit min-h-[calc(100vh-130px)] w-full flex flex-col items-center overflow-y-auto">
+        <h1 className="pt-16 pb-4 text-6xl">{pageTitle}</h1>
         {children}
       </div>
 
       {/*Github and Linked In buttons */}
-      <div className="flex row-span-1 items-center py-16">
+      <div className="flex justify-center items-center pb-16 pt-4 w-full">
         <a href="https://github.com/ryansheehy0" target="_blank">
           <img src="/github.svg"/>
         </a>

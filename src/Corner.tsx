@@ -62,38 +62,37 @@ const Corner: React.FC<CornerProps> = ({corner, setCornerClicked, animationDirec
 
 	const numberOfFrames = 75
 	const oneFrame = 1 / numberOfFrames
-	//let t = 0
 	const [t, setT] = useState(0)
 	useFrame((state) => {
 		switch(animationDirection){
 			case "none": return null
 			case "forward":
-				//t += oneFrame
 				setT((t) => t + oneFrame)
 				if(t >= 1 + oneFrame){
-					//t = 1
 					setT(1)
 					setCornerClicked(corner)
 					setAnimationDirection("none")
 				}
 				break
 			case "backward":
-				//t -= oneFrame
 				setT((t) => t - oneFrame)
 				if(t <= 0 - oneFrame){
-					//t = 0
 					setT(0)
 					setCornerClicked("none")
 					setAnimationDirection("none")
 					setDepth(0.001)
 				}
-				console.log(t)
 				break
 		}
     const position = cameraCurve.getPoint(t)
 		const slightlyAheadPosition = cameraCurve.getPoint(t + .1)
-		state.camera.lookAt(slightlyAheadPosition)
-		state.camera.position.lerp(position, .3)
+		if(t <= 0){
+			state.camera.position.set(0, 0, 5)
+			state.camera.lookAt(0, 0, 0)
+		}else{
+			state.camera.position.lerp(position, .3)
+			state.camera.lookAt(slightlyAheadPosition)
+		}
 	})
 
 	return (

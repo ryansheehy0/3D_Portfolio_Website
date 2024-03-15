@@ -1,7 +1,13 @@
 import React from "react"
+/*
+import { Canvas, useLoader } from "@react-three/fiber"
+import { TextureLoader } from "three"
+*/
 
 const AboutMe: React.FC = () => {
-	return (
+  //const profilePicMaterial = useLoader(TextureLoader, "/profile_picture.png")
+
+	return (<>
     <div className="text-lg flex flex-col items-center w-4/5 max-w-[800px]">
       <p className="indent-5 my-4">
         I am a Software Engineer based in Santa Clara. My passion for coding is the driving force behind my satisfaction in crafting elegant solutions to complex problems. Witnessing lines of code come to life fuels my pursuit of knowledge and mastery over programming.
@@ -19,7 +25,21 @@ const AboutMe: React.FC = () => {
         When I'm not coding, I enjoy working on my projects, watching YouTube, running, and playing video games with my friends. I am a driven individual with a lifelong goal of learning as much as possible about all my passions, especially coding!
       </p>
     </div>
-	)
+
+    {/*
+    <div className="w-fit h-32">
+      <Canvas className="bg-transparent" >
+        <ambientLight intensity={2.5} />
+        <mesh>
+          <circleGeometry args={[4, 100]}/>
+          <meshStandardMaterial map={profilePicMaterial}/>
+        </mesh>
+      </Canvas>
+    </div>
+  */}
+
+    <img src="/profile_picture.png" className="my-4 w-40 aspect-square m-0 p-0"/>
+	</>)
 }
 
 export default AboutMe
