@@ -1,6 +1,7 @@
 import React from "react"
 import GithubIcon from "../../../public/GithubIcon"
 import InternetIcon from "../../../public/InternetIcon"
+import { twMerge } from "tailwind-merge"
 
 type ProjectProps = {
 	title: string,
@@ -9,7 +10,7 @@ type ProjectProps = {
 	webLink: string
 }
 
-const Project: React.FC<ProjectProps> = ({title, imageSrc, _githubLink, _webLink}) => {
+const Project: React.FC<ProjectProps> = ({title, imageSrc, githubLink, webLink}) => {
 	return (
 		<div className="w-96">
 			{/* Title bar*/}
@@ -18,17 +19,24 @@ const Project: React.FC<ProjectProps> = ({title, imageSrc, _githubLink, _webLink
 			</div>
 
 			{/* Image*/}
-			<div className="rounded-br-3xl border-4 border-t-0 border-black h-52 flex justify-center">
-				<img src={imageSrc} width="100%" height="100%" className="rounded-br-3xl"/>
+			<div className="rounded-br-3xl border-4 border-t-0 border-black h-52 flex justify-center overflow-hidden">
+				<img src={imageSrc} width="100%" height="100%" className=""/>
 			</div>
 
 			{/* Links*/}
 			<div className="bg-black w-full flex rounded-bl-3xl h-[44px]">
-				<div className="bg-white w-[88px] h-full flex text-white" >
-					<GithubIcon className="text-white bg-black h-full w-full hover:cursor-pointer p-2 pr-1 pt-1 aspect-square rounded-bl-3xl"/>
-					<InternetIcon className="text-white bg-black h-full w-full hover:cursor-pointer p-2 pl-1 pt-1 aspect-square rounded-br-3xl"/>
+				<div className={twMerge("bg-white h-full flex text-white", webLink === "" ? "w-[48px]" : "w-[88px]")}>
+					<a href={githubLink} target="_blank" className="text-black hover:text-black w-full h-full">
+						<GithubIcon className={twMerge("text-white bg-black h-full w-full hover:cursor-pointer p-2 pr-1 pt-1 aspect-square rounded-bl-3xl", webLink === "" ? "rounded-br-3xl pr-2" : "")}/>
+					</a>
+					{webLink !== "" ?
+						<a href={webLink} target="_blank" className="text-black hover:text-black w-full h-full">
+							<InternetIcon className="text-white bg-black h-full w-full hover:cursor-pointer p-2 pl-1 pt-1 aspect-square rounded-br-3xl"/>
+						</a>
+					:
+						null}
 				</div>
-				<div className="bg-white rounded-tl-3xl w-[296px] h-full"></div>
+				<div className={twMerge("bg-white rounded-tl-3xl h-full", webLink === "" ? "w-[336px]" : "w-[296px]")}></div>
 			</div>
 
 		</div>

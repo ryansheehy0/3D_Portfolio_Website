@@ -47,7 +47,7 @@ const Page: React.FC<PageProps> = ({pageTitle, style, children, cornerClicked, s
 
       {/*Github and Linked In buttons */}
       <div className="flex justify-center items-center pb-16 pt-4 w-full">
-        <a href="https://github.com/ryansheehy0" target="_blank" className="text-black">
+        <a href="https://github.com/ryansheehy0" target="_blank" className="text-black hover:text-black">
           <GithubIcon />
         </a>
         <a href="https://www.linkedin.com/in/ryansheehy0/" target="_blank">
