@@ -1,4 +1,5 @@
 import React from "react"
+import GithubIcon from "../../public/GithubIcon"
 
 type PageProps = {
 	pageTitle: string,
@@ -46,8 +47,8 @@ const Page: React.FC<PageProps> = ({pageTitle, style, children, cornerClicked, s
 
       {/*Github and Linked In buttons */}
       <div className="flex justify-center items-center pb-16 pt-4 w-full">
-        <a href="https://github.com/ryansheehy0" target="_blank">
-          <img src="/github.svg"/>
+        <a href="https://github.com/ryansheehy0" target="_blank" className="text-black">
+          <GithubIcon />
         </a>
         <a href="https://www.linkedin.com/in/ryansheehy0/" target="_blank">
           <img src="/linked-in.svg"/>
