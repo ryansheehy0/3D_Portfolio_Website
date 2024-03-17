@@ -60,7 +60,7 @@ const Corner: React.FC<CornerProps> = ({corner, setCornerClicked, animationDirec
 		endPoint
 	)
 
-	const numberOfFrames = 75
+	const numberOfFrames = 56
 	const oneFrame = 1 / numberOfFrames
 	const [t, setT] = useState(0)
 	useFrame((state) => {

@@ -35,7 +35,7 @@ function App() {
   return (<>
     <Page
       pageTitle={clickedCorner(cornerClicked).pageTitle}
-      style={{opacity: cornerClicked === "none" ? 0.7647 : 1, display: cornerClicked === "none" ? "none" : "block"}}
+      style={{opacity: cornerClicked === "none" ? 0.6 : 1, display: cornerClicked === "none" ? "none" : "block"}}
       cornerClicked={cornerClicked}
       setCornerClicked={setCornerClicked}
       setAnimateTopLeft={setAnimateTopLeft}
