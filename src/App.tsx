@@ -35,7 +35,11 @@ function App() {
   return (<>
     <Page
       pageTitle={clickedCorner(cornerClicked).pageTitle}
-      style={{opacity: cornerClicked === "none" ? 0.6 : 1, display: cornerClicked === "none" ? "none" : "block"}}
+      style={{
+        opacity: cornerClicked === "none" ? 0 : 1,
+        transitionDuration: cornerClicked === "none" ? "0.95s" : "0.1s",
+        pointerEvents: cornerClicked === "none" ? "none" : "auto"
+      }}
       cornerClicked={cornerClicked}
       setCornerClicked={setCornerClicked}
       setAnimateTopLeft={setAnimateTopLeft}
@@ -45,7 +49,7 @@ function App() {
     >
       {clickedCorner(cornerClicked).pageComponent}
     </Page>
-    <div className="w-screen h-screen absolute top-0 left-0" style={{display: cornerClicked === "none" ? "initial" : "none"}}>
+    <div className="w-full h-full absolute top-0 left-0" style={{display: cornerClicked === "none" ? "initial" : "none"}}>
       <Canvas className="bg-black" camera={{fov: 90, near: 0.1, far: 1000, position: [0, 0, 5]}}>
         <ambientLight intensity={1.53} />
         <Corner corner="topLeft" setCornerClicked={setCornerClicked} setAnimationDirection={setAnimateTopLeft} animationDirection={animateTopLeft}/>

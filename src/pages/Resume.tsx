@@ -1,7 +1,6 @@
 import React, {useEffect, useRef, useState} from "react"
 
 const Resume: React.FC = () => {
-	// aspect-[calc(7.8/11)] sm:aspect-[calc(8.1/11)]
 	const outerDiv = useRef<HTMLDivElement>(null)
 	const [height, setHeight] = useState(0)
 

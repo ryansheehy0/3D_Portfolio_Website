@@ -11,11 +11,14 @@ type CornerProps = {
 }
 
 const Corner: React.FC<CornerProps> = ({corner, setCornerClicked, animationDirection, setAnimationDirection}) => {
-	const { width, height } = useThree(state => state.viewport)
+	const { viewport } = useThree()
+	const { width, height} = viewport
+	const { setSize, size } = useThree()
 	const scale = 2.5
 	const maxDepth = -(width/height) * scale
 	const xYDistanceToCenterOfCorner = (scale/2)/(Math.cos(45 * (Math.PI/180)))
-	const [depth, setDepth] = useState(0.001)
+	const noDepth = 0.001
+	const [depth, setDepth] = useState(noDepth)
 
 	let position: [number, number, number]
 	let textPosition: [number, number, number]
@@ -68,7 +71,7 @@ const Corner: React.FC<CornerProps> = ({corner, setCornerClicked, animationDirec
 			case "none": return null
 			case "forward":
 				setT((t) => t + oneFrame)
-				if(t >= 1 + oneFrame){
+				if(t >= 1 + 3 * oneFrame){
 					setT(1)
 					setCornerClicked(corner)
 					setAnimationDirection("none")
@@ -80,7 +83,7 @@ const Corner: React.FC<CornerProps> = ({corner, setCornerClicked, animationDirec
 					setT(0)
 					setCornerClicked("none")
 					setAnimationDirection("none")
-					setDepth(0.001)
+					setDepth(noDepth)
 				}
 				break
 		}
@@ -89,8 +92,10 @@ const Corner: React.FC<CornerProps> = ({corner, setCornerClicked, animationDirec
 		if(t <= 0){
 			state.camera.position.set(0, 0, 5)
 			state.camera.lookAt(0, 0, 0)
+			// Make sure the corners align if the page width changes
+			setSize(size.width, size.height)
 		}else{
-			state.camera.position.lerp(position, .3)
+			state.camera.position.lerp(position, .35)
 			state.camera.lookAt(slightlyAheadPosition)
 		}
 	})

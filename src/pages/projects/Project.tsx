@@ -1,6 +1,6 @@
 import React from "react"
-import GithubIcon from "../../../public/GithubIcon"
-import InternetIcon from "../../../public/InternetIcon"
+import GithubIcon from "../../assets/GithubIcon"
+import InternetIcon from "../../assets/InternetIcon"
 import { twMerge } from "tailwind-merge"
 
 type ProjectProps = {

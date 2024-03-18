@@ -17,14 +17,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.remove-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-.remove-scrollbar::-webkit-scrollbar {
-  display: none; /* Chrome */
-}
-
 a {
   font-weight: 500;
   color: #646cff;
