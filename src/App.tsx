@@ -1,3 +1,20 @@
+/*
+ * This file is part of my 3D Portfolio Website.
+ *
+ * My 3D Portfolio Website is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * My 3D Portfolio Website is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with my 3D Portfolio Website. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 import { Canvas } from "@react-three/fiber"
 import Corner from "./Corner"
 import { Text } from "@react-three/drei"
@@ -37,7 +54,7 @@ function App() {
       pageTitle={clickedCorner(cornerClicked).pageTitle}
       style={{
         opacity: cornerClicked === "none" ? 0 : 1,
-        transitionDuration: cornerClicked === "none" ? "0.95s" : "0.1s",
+        transitionDuration: cornerClicked === "none" ? "2s" : "0.1s",
         pointerEvents: cornerClicked === "none" ? "none" : "auto"
       }}
       cornerClicked={cornerClicked}

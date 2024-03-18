@@ -1,12 +1,23 @@
-import React from "react"
 /*
-import { Canvas, useLoader } from "@react-three/fiber"
-import { TextureLoader } from "three"
-*/
+ * This file is part of my 3D Portfolio Website.
+ *
+ * My 3D Portfolio Website is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * My 3D Portfolio Website is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with my 3D Portfolio Website. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+import React from "react"
 
 const AboutMe: React.FC = () => {
-  //const profilePicMaterial = useLoader(TextureLoader, "/profile_picture.png")
-
 	return (<>
     <div className="text-lg flex flex-col items-center w-4/5 max-w-[800px]">
       <p className="indent-5 my-4">
@@ -25,18 +36,6 @@ const AboutMe: React.FC = () => {
         When I'm not coding, I enjoy working on my projects, watching YouTube, running, and playing video games with my friends. I am a driven individual with a lifelong goal of learning as much as possible about all my passions, especially coding!
       </p>
     </div>
-
-    {/*
-    <div className="w-fit h-32">
-      <Canvas className="bg-transparent" >
-        <ambientLight intensity={2.5} />
-        <mesh>
-          <circleGeometry args={[4, 100]}/>
-          <meshStandardMaterial map={profilePicMaterial}/>
-        </mesh>
-      </Canvas>
-    </div>
-  */}
 
     <img src="/profile_picture.png" className="my-4 w-40 aspect-square m-0 p-0"/>
 	</>)
