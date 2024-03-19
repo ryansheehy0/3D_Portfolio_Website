@@ -54,7 +54,8 @@ function App() {
       pageTitle={clickedCorner(cornerClicked).pageTitle}
       style={{
         opacity: cornerClicked === "none" ? 0 : 1,
-        transitionDuration: cornerClicked === "none" ? "2s" : "0.1s",
+        transitionTimingFunction: cornerClicked === "none" ? "cubic-bezier(0.63, 0.01, 0.97, .23)" : "cubic-bezier(0.4, 0, 0.2, 1)",
+        transitionDuration: cornerClicked === "none" ? "0.5s" : "0.1s",
         pointerEvents: cornerClicked === "none" ? "none" : "auto"
       }}
       cornerClicked={cornerClicked}
