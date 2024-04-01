@@ -47,6 +47,12 @@ const projects = [
 		imgLink: "https://github.com/ryansheehy0/Null_Pass_Manager_CLI",
 		githubLink: "https://github.com/ryansheehy0/Null_Pass_Manager_CLI"
 	},
+	{
+		title: "Time Tracking Big Red Button",
+		imgSrc: "/projects/time_tracking_big_red_button.jpeg",
+		imgLink: "https://github.com/ryansheehy0/Time_Tracking_Big_Red_Button",
+		githubLink: "https://github.com/ryansheehy0/Time_Tracking_Big_Red_Button"
+	},
 ]
 
 export default projects
